@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Enumeração_Composição.Entities.Enums;
 using System.Numerics;
 using System.Security.Cryptography.X509Certificates;
+using System.Globalization;
 
 namespace Enumeração_Composição.Entities
 {
@@ -36,6 +37,31 @@ namespace Enumeração_Composição.Entities
             Items.Remove(item);
         }
 
-        
+        public double total ()
+        {
+            double sum = 0.0;
+            foreach (OrderItem item in Items)
+            {
+                sum += item.SubTotal();
+
+            }
+            return sum;     
+        }
+        public override string ToString()
+        {
+            stringBuilder sb = new StringBuilder();
+            sb.AppendLine("Order moment: " + Moment.ToString("dd/MM/yyyy HH:mm:ss"));
+            sb.AppendLine("Order status: " + Status);
+            sb.AppendLine("Client: " + Client);
+            sb.AppendLine("Order Items:");
+            foreach (OrderItem item in Items)
+            {
+            }
+            sb.AppendLine(Items.ToString());
+            sb.AppendLine("Total price: $" + total().ToString("F2", CultureInfo.InvariantCulture));
+            return sb.ToString();
+        }
+
+
     }
 }
