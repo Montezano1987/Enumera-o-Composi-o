@@ -1,18 +1,16 @@
-﻿using System;
-using System.Globalization;
-using System.Text;
+﻿using System.Globalization;
+using Enumeração_Composição.Entities;
 
 namespace Enumeração_Composição.Entities
 {
-    internal class OrderItem
+    class OrderItem
     {
         public int Quantity { get; set; }
         public double Price { get; set; }
-
         public Product Product { get; set; }
 
-        public OrderItem() 
-        { 
+        public OrderItem()
+        {
         }
 
         public OrderItem(int quantity, double price, Product product)
@@ -23,9 +21,10 @@ namespace Enumeração_Composição.Entities
         }
 
         public double SubTotal()
-        { 
-            return Quantity * Price;    
+        {
+            return Price * Quantity;
         }
+
         public override string ToString()
         {
             return Product.Name
